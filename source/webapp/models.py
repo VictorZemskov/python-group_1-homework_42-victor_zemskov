@@ -26,3 +26,16 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+
+class Comment(models.Model):
+    article = models.ForeignKey('Article', null=True, blank=True, on_delete=models.PROTECT, verbose_name='Статья')
+    user = models.ForeignKey('User', on_delete=models.PROTECT, verbose_name='Пользователь')
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.PROTECT, verbose_name='Ответ на комментарий')
+    content = models.TextField(max_length=2000, verbose_name='Содержание комментария')
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
