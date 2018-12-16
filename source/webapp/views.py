@@ -12,3 +12,6 @@ class ArticleDetailView(DetailView):
     model = Article
     template_name = 'article_detail.html'
 
+class UserListView(ListView):
+    model = User
+    template_name = 'user_list.html'
