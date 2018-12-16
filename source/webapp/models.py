@@ -29,8 +29,8 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey('Article', null=True, blank=True, on_delete=models.PROTECT, related_name='comments', verbose_name='Статья')
-    user = models.ForeignKey('User', on_delete=models.PROTECT, related_name='user_comments', verbose_name='Пользователь')
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.PROTECT, related_name='parent_comments', verbose_name='Ответ на комментарий')
+    user = models.ForeignKey('User', on_delete=models.PROTECT, related_name='comments', verbose_name='Пользователь')
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.PROTECT, related_name='comments', verbose_name='Ответ на комментарий')
     content = models.TextField(max_length=2000, verbose_name='Содержание комментария')
 
     def __str__(self):
