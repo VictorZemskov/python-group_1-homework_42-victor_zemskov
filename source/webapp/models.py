@@ -18,7 +18,7 @@ class User(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='Заголовок')
     content = models.TextField(max_length=2000, verbose_name='Содержание статьи')
-    author = models.ForeignKey('User', on_delete=models.PROTECT, verbose_name='Автор')
+    author = models.ForeignKey('User', on_delete=models.PROTECT, related_name='articles', verbose_name='Автор')
 
     def __str__(self):
         return self.title
@@ -28,9 +28,9 @@ class Article(models.Model):
         verbose_name_plural = 'Статьи'
 
 class Comment(models.Model):
-    article = models.ForeignKey('Article', null=True, blank=True, on_delete=models.PROTECT, verbose_name='Статья')
-    user = models.ForeignKey('User', on_delete=models.PROTECT, verbose_name='Пользователь')
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.PROTECT, verbose_name='Ответ на комментарий')
+    article = models.ForeignKey('Article', null=True, blank=True, on_delete=models.PROTECT, related_name='comments', verbose_name='Статья')
+    user = models.ForeignKey('User', on_delete=models.PROTECT, related_name='user_comments', verbose_name='Пользователь')
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.PROTECT, related_name='parent_comments', verbose_name='Ответ на комментарий')
     content = models.TextField(max_length=2000, verbose_name='Содержание комментария')
 
     def __str__(self):
@@ -55,7 +55,7 @@ class Ratting(models.Model):
         (MARK_FINE, 'Отлично')
     )
     article = models.ForeignKey('Article', on_delete=models.PROTECT, verbose_name='Статья')
-    user = models.ForeignKey('User', on_delete=models.PROTECT, verbose_name='Пользователь')
+    user = models.ForeignKey('User', on_delete=models.PROTECT, related_name='rattings', verbose_name='Пользователь')
     mark = models.CharField(max_length=20, choices=MARK_CHOICES, verbose_name='Оценка')
 
     def __str__(self):
