@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Статья{% endblock %}
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    {% for comment in article.comments.all %}
+        {{ comment.content }}
+    {% endfor %}
+{% endblock %}

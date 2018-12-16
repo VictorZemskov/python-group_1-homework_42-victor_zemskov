@@ -2,6 +2,6 @@
 {% block title %}Статьи{% endblock %}
 {% block content %}
     {% for article in article_list %}
-        <h4>{{ article.title }}</h4>
+        <h4><a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h4>
     {% endfor %}
 {% endblock %}
