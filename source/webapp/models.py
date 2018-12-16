@@ -39,3 +39,28 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+class Ratting(models.Model):
+    MARK_TERRIBLE = 'terrible'
+    MARK_BAD = 'bad'
+    MARK_OK = 'ok'
+    MARK_GOOD = 'good'
+    MARK_FINE = 'fine'
+
+    MARK_CHOICES = (
+        (MARK_TERRIBLE, 'Ужасно'),
+        (MARK_BAD, 'Плохо'),
+        (MARK_OK, 'Нормально'),
+        (MARK_GOOD, 'Хорошо'),
+        (MARK_FINE, 'Отлично')
+    )
+    article = models.ForeignKey('Article', on_delete=models.PROTECT, verbose_name='Статья')
+    user = models.ForeignKey('User', on_delete=models.PROTECT, verbose_name='Пользователь')
+    mark = models.CharField(max_length=20, choices=MARK_CHOICES, verbose_name='Оценка')
+
+    def __str__(self):
+        return self.mark
+
+    class Meta:
+        verbose_name = 'Оценка'
+        verbose_name_plural = 'Оценки'
