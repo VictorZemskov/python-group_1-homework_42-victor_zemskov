@@ -10,7 +10,7 @@
         {{ comment.user }}<br>
     {% endfor %}
     <h3>Оценки</h3>
-    {% for ratting in user.rattings.all %}
-        {{ ratting.mark }}
+    {% for ratting in article.rattings.all %}
+        <p>{{ ratting.mark }} - {{ ratting.user }}</p>
     {% endfor %}
 {% endblock %}

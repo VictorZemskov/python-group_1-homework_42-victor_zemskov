@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Пользователь{% endblock %}
+{% block content %}
+    <h1>{{ user.nickname }}</h1>
+    <p>{{ user.name }} {{ user.surname }}</p>
+    <h3>Статьи</h3>
+    {% for article in user.articles.all %}
+        <p>{{ article.title }}</p>
+    {% endfor %}
+    <h3>Избранное</h3>
+    {% for favorite in user.favorites.all %}
+    <p>{{ favorite.title }}</p>
+    {% endfor %}
+{% endblock %}

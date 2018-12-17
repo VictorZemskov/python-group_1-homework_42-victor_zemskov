@@ -2,6 +2,6 @@
 {% block title %}Статьи{% endblock %}
 {% block content %}
     {% for user in user_list %}
-        <h4><a href="#">{{ user.nickname }}</a></h4>
+        <h4><a href="{% url 'user_detail' user.pk %}">{{ user.nickname }}</a></h4>
     {% endfor %}
 {% endblock %}

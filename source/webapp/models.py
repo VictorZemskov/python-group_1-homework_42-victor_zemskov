@@ -54,7 +54,7 @@ class Ratting(models.Model):
         (MARK_GOOD, 'Хорошо'),
         (MARK_FINE, 'Отлично')
     )
-    article = models.ForeignKey('Article', on_delete=models.PROTECT, verbose_name='Статья')
+    article = models.ForeignKey('Article', on_delete=models.PROTECT, related_name='rattings', verbose_name='Статья')
     user = models.ForeignKey('User', on_delete=models.PROTECT, related_name='rattings', verbose_name='Пользователь')
     mark = models.CharField(max_length=20, choices=MARK_CHOICES, verbose_name='Оценка')
 
