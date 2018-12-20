@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Создать статью{% endblock %}
 {% block content %}
-    <р1>Новая статья</р1>
+    <h1>Новая статья</h1>
     <form action="{% url 'article_create' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
