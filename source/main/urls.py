@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from webapp.views import ArticleListView, ArticleDetailView, UserListView, UserDetailView
+from webapp.views import ArticleListView, ArticleDetailView, UserListView, UserDetailView, ArticleCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,5 @@ urlpatterns = [
     path('articles/<int:pk>', ArticleDetailView.as_view(), name='article_detail'),
     path('users', UserListView.as_view(), name='user_list'),
     path('user/<int:pk>', UserDetailView.as_view(), name='user_detail'),
+    path('articles/create', ArticleCreateView.as_view, name='article_create'),
 ]
