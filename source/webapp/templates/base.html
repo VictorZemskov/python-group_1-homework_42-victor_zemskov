@@ -23,6 +23,11 @@
             <li class="nav-item">
                 <a href="{% url 'article_list' %}" class="nav-link">На главную</a>
             </li>
+        </ul>
+         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{% url 'user_list' %}" class="nav-link">Пользователи</a>
+            </li>
             {% block menu %}{% endblock %}
         </ul>
     </div>
